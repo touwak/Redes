@@ -18,5 +18,13 @@
     <ClCompile Include="src\main.cc">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\server.cc">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\server.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
