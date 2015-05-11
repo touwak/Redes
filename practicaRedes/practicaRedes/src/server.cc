@@ -12,9 +12,9 @@ char* Server::readFile(const char* file_path, int * out_put_size){
     code = of_buffer.str();
 
     *out_put_size = code.size();
-    char* file_code = (char*)malloc(code.length() + 1);
-    memset(file_code, 0, code.length() + 1);
-    strncpy((char*)file_code, code.c_str(), code.length());
+    char* file_code = (char*)malloc(code.size() + 1);
+    memset(file_code, 0, code.size() + 1);
+    strncpy((char*)file_code, code.c_str(), code.size());
 
     return file_code;
   }
@@ -114,11 +114,13 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
           header += "Server: Apache 2.0.23\r\n";
           header += "\r\n";
 
-          memset(msg_c, 0, 1024);
-          strcpy(msg_c, header.c_str());
-          send(sock_cte, msg_c, strlen(msg_c), 0);
+          for (int i = 0; i < code_size; ++i){
+            header += html[i];
+          }
 
-          send(sock_cte, html, strlen(html), 0);
+          send(sock_cte, header.c_str(), code_size + header.size(), 0);
+          
+          //send(sock_cte, html, strlen(html), 0);
           free(html);
         }
       }//CSS
