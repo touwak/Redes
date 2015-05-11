@@ -11,6 +11,6 @@
 namespace Server
 {
   int init(int port, const char* file_path);
-  char* readFile(const char* file_path);
+  char* readFile(const char* file_path, int * out_put_size);
 };
 #endif // !__SERVER_H__

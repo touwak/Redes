@@ -1,13 +1,1 @@
-﻿  server.cc
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(20): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(53): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
-          c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(69): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
-          c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(79): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(94): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(101): warning C4715: 'Server::init' : not all control paths return a value
-  practicaRedes.vcxproj -> D:\ESAT\2014\redes\Redes\practicaRedes\Debug\practicaRedes.exe
+﻿  practicaRedes.vcxproj -> D:\ESAT\2014\redes\Redes\practicaRedes\Debug\practicaRedes.exe

@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv){
   
-  Server::init(8080, "assets/index.htm");
+  Server::init(8080, "www/index.htm");
   
   return 0;
 }
