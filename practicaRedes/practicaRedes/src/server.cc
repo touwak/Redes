@@ -1,8 +1,8 @@
 #include "server.h"
 
-
+//read files
 char* Server::readFile(const char* file_path, int * out_put_size){
-  std::ifstream stream(file_path, std::ios::binary);
+  /*std::ifstream stream(file_path, std::ios::binary);
 
   if (stream.is_open()) {
     std::stringstream of_buffer;
@@ -18,10 +18,28 @@ char* Server::readFile(const char* file_path, int * out_put_size){
 
     return file_code;
   }
+  return NULL;*/
 
-  return NULL;
+  char * buffer;
+  long size;
+  if (ifstream file(file_path, ios::in | ios::binary | ios::ate)){
+    out_put_size = size = file.tellg();
+    file.seekg(0, ios::beg);
+    buffer = new char[size];
+    file.read(buffer, size);
+    file.close();
+
+
+    return buffer;
+  }
+  else{
+    delete[] buffer;
+    return NULL;
+  }
 }
 
+
+//server
 int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
   WSADATA wsa;
   SOCKET sock;
@@ -104,67 +122,24 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
         }
       }//JPG
       else if (strcmp(res, "/jpg") == 0 || strcmp(res, "/fav") == 0){
-        if (readFile("www/imagenes/2.jpg", &code_size) != NULL){
+        if (readFile("www/imagenes/2.jpg", &code_size) != NULL){          
+
+          std::string header = "HTTP/1.1 200 OK\r\n";
+          header += "Content - Type: image/* \r\n";
+          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
+          header += "Server: Apache 2.0.23\r\n";
+          header += "\r\n";
+
+          memset(msg_c, 0, 1024);
+          strcpy(msg_c, header.c_str());
+          send(sock_cte, msg_c, strlen(msg_c), 0);
 
           html = readFile("www/imagenes/2.jpg", &code_size);
-
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Type: image/* \r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
-
-          for (int i = 0; i < code_size; ++i){
-            header += html[i];
-          }
-
-          send(sock_cte, header.c_str(), code_size + header.size(), 0);
-          
-          //send(sock_cte, html, strlen(html), 0);
-          free(html);
-        }
-      }//CSS
-      else if (strcmp(res, "/css") == 0){
-        if (readFile("www/default.css", &code_size) != NULL){
-          html = readFile("www/default.css", &code_size);
-
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Content - Type: (text / html | image/ *| text/css) \r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
-
-          memset(msg_c, 0, 1024);
-          strcpy(msg_c, header.c_str());
-          send(sock_cte, msg_c, strlen(msg_c), 0);
-
-          
           send(sock_cte, html, strlen(html), 0);
           free(html);
         }
-      }//favico
-      /*
-      else if (strcmp(res, "/fav") == 0){
-        if (readFile("www/imagenes/favico.ico", &code_size) != NULL){
-          html = readFile("www/imagenes/favico.ico", &code_size);
-
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Type: image/* \r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
-
-          memset(msg_c, 0, 1024);
-          strcpy(msg_c, header.c_str());
-          send(sock_cte, msg_c, strlen(msg_c), 0);
-
-          
-          send(sock_cte, html, strlen(html), 0);
-          free(html);
-        }
-      }
-      */
-      else if (!charged){//HTML
+      }//HTML
+      else if (!charged){
         if (readFile("www/index.htm", &code_size) != NULL){
           html = readFile(file_path, &code_size);
 
@@ -181,7 +156,15 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
           
           send(sock_cte, html, strlen(html), 0);
           free(html);
-          charged = true;
+
+          html = readFile("www/default.css", &code_size);
+          memset(msg_c, 0, 1024);
+          strcpy(msg_c, header.c_str());
+          send(sock_cte, msg_c, strlen(msg_c), 0);
+
+          send(sock_cte, html, strlen(html), 0);
+          free(html);
+      
         }
         else{
           std::string header = "HTTP/1.1 404 pagina no encontrada\r\n";

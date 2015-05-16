@@ -1,24 +1,7 @@
-﻿Build started 11/05/2015 16:17:06.
-     1>Project "C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\practicaRedes\practicaRedes.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iinclude /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\server.cc
-         server.cc
-     1>c:\users\claramuntgi\documents\redes\redes\practicaredes\practicaredes\src\server.cc(17): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(195) : see declaration of 'strncpy'
-     1>c:\users\claramuntgi\documents\redes\redes\practicaredes\practicaredes\src\server.cc(98): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-     1>c:\users\claramuntgi\documents\redes\redes\practicaredes\practicaredes\src\server.cc(138): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-     1>c:\users\claramuntgi\documents\redes\redes\practicaredes\practicaredes\src\server.cc(178): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-     1>c:\users\claramuntgi\documents\redes\redes\practicaredes\practicaredes\src\server.cc(194): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : see declaration of 'strcpy'
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\Debug\practicaRedes.exe" /INCREMENTAL /NOLOGO ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\Debug\practicaRedes.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\Debug\practicaRedes.lib" /MACHINE:X86 Debug\main.obj
-         Debug\server.obj
-         practicaRedes.vcxproj -> C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\Debug\practicaRedes.exe
-     1>Done Building Project "C:\Users\claramuntgi\Documents\Redes\Redes\practicaRedes\practicaRedes\practicaRedes.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.29
+﻿  server.cc
+d:\esat\2014\redes\redes\practicaredes\practicaredes\include\server.h(10): fatal error C1083: Cannot open include file: 'iostream.h': No such file or directory
+  Generating Code...
+  Compiling...
+  main.cc
+d:\esat\2014\redes\redes\practicaredes\practicaredes\include\server.h(10): fatal error C1083: Cannot open include file: 'iostream.h': No such file or directory
+  Generating Code...

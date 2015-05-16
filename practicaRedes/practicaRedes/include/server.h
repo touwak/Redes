@@ -7,6 +7,8 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <iostream.h>
+
 
 namespace Server
 {
