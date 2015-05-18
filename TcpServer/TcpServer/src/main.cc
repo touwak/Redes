@@ -2,8 +2,12 @@
 
 
 int main(int argc, char** argv){
-  
-  Server::init(8080, "www/index.htm");
+  int port = 8080;
+
+  printf("introduce el puerto a escuchar:\n");
+  scanf("&d", port);
+
+  Server::init(port, "www/index.htm");
   
   return 0;
 }

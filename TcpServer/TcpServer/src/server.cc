@@ -55,7 +55,7 @@ char* Server::readImage(const char* file_path, int * out_put_size){
 
 
 //server
-int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
+int Server::init(int port, const char* file_path = "www/index.htm"){
   WSADATA wsa;
   SOCKET sock;
   SOCKET sock_cte;
@@ -70,6 +70,8 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
   bool charged = false;
 
   char msg_c[1024];
+
+  printf("\nserver iniciado\n");
 
   if (WSAStartup(MAKEWORD(2, 0), &wsa)){
     printf("Error!");
@@ -114,27 +116,30 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
 
       printf("\n");
       puts(server_reply);
+      
+      if (recv_size > 1){
+        res = strtok(server_reply, " ");
+        res = strtok(NULL, " ");
+        aux_res = "www";
+        aux_res += res;
 
-      res = strtok(server_reply, " ");
-      res = strtok(NULL, " ");
-      aux_res = "www";
-      aux_res += res;
 
-      image_ext = strtok(res, "/");
-      image_ext = strtok(NULL, "/");
-      image_ext = strtok(image_ext, ".");
-      image_ext = strtok(NULL, " ");
+        image_ext = strtok(res, "/");
+        image_ext = strtok(NULL, "/");
+        image_ext = strtok(image_ext, ".");
+        image_ext = strtok(NULL, " ");
 
-      if (image_ext == NULL){
-        image_ext = "0";
+        if (image_ext == NULL){
+          image_ext = "0";
+        }
+        if (res == NULL){
+          res = "0";
+        }
       }
-      if (res == NULL){
-        res = "0";
-      }
 
 
-      // PNG //////////////
-      if (strcmp(image_ext, "png") == 0){
+      // IMAGES //////////////
+      if (strcmp(image_ext, "png") == 0 || strcmp(image_ext, "jpg") == 0){
 
           html = readImage(aux_res.c_str(), &code_size);
           
@@ -152,26 +157,7 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
           send(sock_cte, html, code_size, 0);
           free(html);
 
-      }// JPG ////////////
-      else if (strcmp(image_ext, "jpg") == 0){
-        
-          html = readImage(aux_res.c_str(), &code_size);
-          
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Type: image/* \r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
-
-          memset(msg_c, 0, 1024);
-          strcpy(msg_c, header.c_str());
-          send(sock_cte, msg_c, strlen(msg_c), 0);
-
-          
-          send(sock_cte, html, code_size, 0);
-          free(html);
- 
-      }// WEB /////////////
+      }/// WEB /////////////
       else if (strcmp(res, "/default.css") == 0 ){
         //CSS
         std::string header = "HTTP/1.1 200 OK\r\n";
@@ -188,7 +174,7 @@ int Server::init(int port = 8080, const char* file_path = "www/index.htm"){
         send(sock_cte, html, strlen(html), 0);
         free(html);
       }
-      else if (!charged){
+      else if (strcmp(res,"/") == 0){
         if (readFile("www/index.htm", &code_size) != NULL){
 
           
