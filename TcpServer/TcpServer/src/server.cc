@@ -52,8 +52,6 @@ char* Server::readImage(const char* file_path, int * out_put_size){
   return buffer;
 }
 
-
-
 //server
 int Server::init(int port, const char* file_path = "www/index.htm"){
   WSADATA wsa;
@@ -71,7 +69,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
 
   char msg_c[1024];
 
-  printf("\nserver iniciado\n");
+ 
 
   if (WSAStartup(MAKEWORD(2, 0), &wsa)){
     printf("Error!");
@@ -101,7 +99,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
     return 1;
   }
 
- 
+  printf("\nserver iniciado\n");
 
 
   while (true)
@@ -208,7 +206,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
     }
 
 
-    //system("pause");
+    
     closesocket(sock_cte);
   }
   closesocket(sock);
