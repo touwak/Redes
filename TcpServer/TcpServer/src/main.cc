@@ -2,13 +2,18 @@
 
 
 int main(int argc, char** argv){
-  int port = 8080;
+  int port = 0;
 
-  printf("introduce el puerto a escuchar:\n");
-  std::cin >> port;
+
+  if (argv[1] != NULL){
+    port = atoi(argv[1]);
+  }
+  else{
+    port = 8080;
+  }
 
   Server::init(port);
-  printf("argv: %d", argv[1]);
+ 
   
   return 0;
 }
