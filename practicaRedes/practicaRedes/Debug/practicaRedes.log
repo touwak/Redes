@@ -1,7 +1,33 @@
 ﻿  server.cc
-d:\esat\2014\redes\redes\practicaredes\practicaredes\include\server.h(10): fatal error C1083: Cannot open include file: 'iostream.h': No such file or directory
-  Generating Code...
-  Compiling...
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2065: 'ifstream' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2146: syntax error : missing ')' before identifier 'file'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2653: 'ios' : is not a class or namespace name
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2065: 'in' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2065: 'binary' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2065: 'ate' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C2059: syntax error : ')'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(26): error C2065: 'file' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(26): error C2228: left of '.tellg' must have class/struct/union
+          type is 'unknown-type'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(25): error C3861: 'file': identifier not found
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(26): error C2143: syntax error : missing '}' before ';'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(27): error C2065: 'file' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(27): error C2228: left of '.seekg' must have class/struct/union
+          type is 'unknown-type'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(27): error C2653: 'ios' : is not a class or namespace name
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(27): error C2065: 'beg' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(29): error C2065: 'file' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(29): error C2228: left of '.read' must have class/struct/union
+          type is 'unknown-type'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(30): error C2065: 'file' : undeclared identifier
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(30): error C2228: left of '.close' must have class/struct/union
+          type is 'unknown-type'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(35): error C2059: syntax error : 'else'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(35): error C2143: syntax error : missing ';' before '{'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(35): error C2447: '{' : missing function header (old-style formal list?)
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(39): error C2059: syntax error : '}'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(39): error C2143: syntax error : missing ';' before '}'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(43): error C2143: syntax error : missing ';' before '{'
+d:\esat\2014\redes\redes\practicaredes\practicaredes\src\server.cc(43): error C2447: '{' : missing function header (old-style formal list?)
   main.cc
-d:\esat\2014\redes\redes\practicaredes\practicaredes\include\server.h(10): fatal error C1083: Cannot open include file: 'iostream.h': No such file or directory
   Generating Code...

@@ -61,14 +61,17 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
   struct sockaddr_in ip, ip_c;
   char* html = NULL, server_reply[10000];
   char *res;
+  char *web_res;
   std::string aux_res;
   char *image_ext;
+  char *web_ext;
   int html_size = 10000;
   int recv_size;
   bool charged = false;
 
   char msg_c[1024];
 
+  
  
 
   if (WSAStartup(MAKEWORD(2, 0), &wsa)){
@@ -118,10 +121,20 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
       if (recv_size > 1){
         res = strtok(server_reply, " ");
         res = strtok(NULL, " ");
+        
+        web_res = new char[strlen(res)];
+        memset(web_res, '\0', strlen(res));
+        strcpy(web_res, res);
+
         aux_res = "www";
         aux_res += res;
 
+        //css ext
+        web_ext = strtok(web_res, "/");
+        web_ext = strtok(web_res, ".");
+        web_ext = strtok(NULL, " ");
 
+        //image ext
         image_ext = strtok(res, "/");
         image_ext = strtok(NULL, "/");
         image_ext = strtok(image_ext, ".");
@@ -132,6 +145,9 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
         }
         if (res == NULL){
           res = "0";
+        }
+        if (web_ext == NULL){
+          web_ext = "0";
         }
       }
 
@@ -156,7 +172,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
           free(html);
 
       }/// WEB /////////////
-      else if (strcmp(res, "/default.css") == 0 ){
+      else if (strcmp(web_ext, "css") == 0 ){
         //CSS
         std::string header = "HTTP/1.1 200 OK\r\n";
         header += "Content - Type: text/css \r\n";
@@ -164,7 +180,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
         header += "Server: Apache 2.0.23\r\n";
         header += "\r\n";
 
-        html = readFile("www/default.css", &code_size);
+        html = readFile(aux_res.c_str(), &code_size);
         memset(msg_c, 0, 1024);
         strcpy(msg_c, header.c_str());
         send(sock_cte, msg_c, strlen(msg_c), 0);
