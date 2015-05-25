@@ -8,6 +8,7 @@ int main(int argc, char** argv){
   std::cin >> port;
 
   Server::init(port);
+  printf("argv: %d", argv[1]);
   
   return 0;
 }

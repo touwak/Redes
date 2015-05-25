@@ -181,11 +181,12 @@ int Server::init(int port){
 
           html = readImage(aux_res.c_str(), &code_size);
           
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Type: image/* \r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
+          std::string header = "HTTP/1.1 200 OK\n";
+          header += "content-type: image/*\n";
+          header += "accept-ranges: bytes\n";
+          header += "content-length: " + std::to_string(code_size) + "\n";
+          header += "Server: Apache 2.0.23\n";
+          header += "\n";
 
           memset(msg_c, 0, 1024);
           strcpy(msg_c, header.c_str());
@@ -198,11 +199,12 @@ int Server::init(int port){
       }/// WEB /////////////
       else if (strcmp(web_ext, "css") == 0 ){
         //CSS
-        std::string header = "HTTP/1.1 200 OK\r\n";
-        header += "Content - Type: text/css \r\n";
-        header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-        header += "Server: Apache 2.0.23\r\n";
-        header += "\r\n";
+        std::string header = "HTTP/1.1 200 OK\n";
+        header += "content-type: text/css\n";
+        header += "accept-ranges: bytes\n";
+        header += "content - length: " + std::to_string(code_size) + "\n";
+        //header += "Server: Apache 2.0.23\r\n";
+        header += "\n";
 
         html = readFile(aux_res.c_str(), &code_size);
         memset(msg_c, 0, 1024);
@@ -216,11 +218,12 @@ int Server::init(int port){
 
         if (readFile(index_path.c_str(), &code_size) != NULL){
 
-          std::string header = "HTTP/1.1 200 OK\r\n";
-          header += "Content - Type: text/html \r\n";
-          header += "Content - Length: " + std::to_string(code_size) + "\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
+          std::string header = "HTTP/1.1 200 OK\n";
+          header += "content - type: text/html\n";
+          header += "accept - ranges: bytes\n";
+          header += "content - length: " + std::to_string(code_size) + "\n";
+          header += "Server: Apache 2.0.23\n";
+          header += "\n";
 
           memset(msg_c, 0, 1024);
           strcpy(msg_c, header.c_str());
@@ -232,11 +235,12 @@ int Server::init(int port){
           free(html);
         }
         else{
-          std::string header = "HTTP/1.1 404 pagina no encontrada\r\n";
-          header += "Content - Type: (text / html | image/ *| text/css) \r\n";
-          header += "Content - Length: 24\r\n";
-          header += "Server: Apache 2.0.23\r\n";
-          header += "\r\n";
+          std::string header = "HTTP/1.1 404 pagina no encontrada\n";
+          header += "Content - Type: (text / html | image/ *| text/css)\n";
+          header += "accept-ranges: bytes\n";
+          header += "Content - Length: 24\n";
+          header += "Server: Apache 2.0.23\n";
+          header += "\n";
 
           memset(msg_c, 0, 1024);
           strcpy(msg_c, header.c_str());
