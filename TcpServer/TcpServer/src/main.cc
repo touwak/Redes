@@ -7,7 +7,7 @@ int main(int argc, char** argv){
   printf("introduce el puerto a escuchar:\n");
   std::cin >> port;
 
-  Server::init(port, "www/index.htm");
+  Server::init(port);
   
   return 0;
 }

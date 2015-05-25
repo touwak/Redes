@@ -12,7 +12,7 @@
 
 namespace Server
 {
-  int init(int port, const char* file_path);
+  int init(int port);
   char* readFile(const char* file_path, int * out_put_size);
   char* readImage(const char* file_path, int * out_put_size);
 };

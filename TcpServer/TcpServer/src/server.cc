@@ -53,7 +53,7 @@ char* Server::readImage(const char* file_path, int * out_put_size){
 }
 
 //server
-int Server::init(int port, const char* file_path = "www/index.htm"){
+int Server::init(int port){
   WSADATA wsa;
   SOCKET sock;
   SOCKET sock_cte;
@@ -62,14 +62,16 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
   char* html = NULL, server_reply[10000];
   char *res;
   char *web_res;
-  std::string aux_res;
+  std::string aux_res, index_path;
   char *image_ext;
   char *web_ext;
   int html_size = 10000;
   int recv_size;
   bool charged = false;
-
   char msg_c[1024];
+
+  char *host;
+  char *server_reply2;
 
   
  
@@ -114,6 +116,10 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
     if ((recv_size = recv(sock_cte, server_reply, 2000, 0)) != SOCKET_ERROR){
       server_reply[recv_size] = '\0';
 
+      server_reply2 = new char[recv_size];
+      memset(server_reply2, '\0', recv_size);
+      strcpy(server_reply2, server_reply);
+
 
       printf("\n");
       puts(server_reply);
@@ -126,7 +132,25 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
         memset(web_res, '\0', strlen(res));
         strcpy(web_res, res);
 
-        aux_res = "www";
+
+        //host
+        host = strtok(server_reply2, "\n");
+        host = strtok(NULL, " ");
+        host = strtok(NULL, "\r");
+        
+        //change the directory
+        if (strcmp(host, "www.dominio1.com") == 0){
+          aux_res = "vhost/dominio1.com";
+          index_path = "vhost/dominio1.com/index.htm";
+        }
+        else if (strcmp(host, "www.dominio2.com") == 0){
+          aux_res = "vhost/dominio2.com";
+          index_path = "vhost/dominio2.com/index.htm";
+        }
+        else{
+          aux_res = "www";
+          index_path = "www/index.htm";
+        }
         aux_res += res;
 
         //css ext
@@ -189,9 +213,9 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
         free(html);
       }
       else if (strcmp(res,"/") == 0){
-        if (readFile("www/index.htm", &code_size) != NULL){
 
-          
+        if (readFile(index_path.c_str(), &code_size) != NULL){
+
           std::string header = "HTTP/1.1 200 OK\r\n";
           header += "Content - Type: text/html \r\n";
           header += "Content - Length: " + std::to_string(code_size) + "\r\n";
@@ -203,7 +227,7 @@ int Server::init(int port, const char* file_path = "www/index.htm"){
           send(sock_cte, msg_c, strlen(msg_c), 0);
 
           //HTML
-          html = readFile(file_path, &code_size);
+          html = readFile(index_path.c_str(), &code_size);
           send(sock_cte, html, strlen(html), 0);
           free(html);
         }
